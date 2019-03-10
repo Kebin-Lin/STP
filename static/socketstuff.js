@@ -2,6 +2,8 @@ var socket = io.connect('http://' + document.domain + ":" + location.port);
 
 socket.on('connect', function() {
   console.log('Successfully Connected');
+  console.log('Joining General');
+  socket.emit('joinRoom', 'General');
 })
 
 socket.on('joinRoom', function(msg) {
