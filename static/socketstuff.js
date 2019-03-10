@@ -9,15 +9,26 @@ socket.on('joinRoom', function(msg) {
 })
 
 socket.on('message', function(msg) {
-  console.log(msg);
+  var chatlog = document.getElementById('chatlog');
+  var newMsg = document.createElement('li');
+  var children = chatlog.children;
+  newMsg.innerHTML = msg;
+  chatlog.appendChild(newMsg)
 })
 
 var sendMessage = function() {
   console.log('Sending message');
-  socket.send('hi im here');
+  inputbox = document.getElementById('msgtosend');
+  var newMsg = inputbox.value;
+  console.log(newMsg);
+  socket.send(newMsg);
+  inputbox.value = "";
 }
 
-var createRoom = function() {
-  console.log('Creating room');
-  socket.emit('createRoom',{ type:'chat', members:[] });
+var joinRoom = function() {
+  console.log('Joining room');
+  inputbox = document.getElementById('roomtojoin');
+  var roomName = inputbox.value;
+  socket.emit('joinRoom',roomName);
+  inputbox = "";
 }

@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
-<button onclick='createRoom()'>Create a chat room</button>
+<input type="text" id="roomtojoin"></input>
+<button onclick='joinRoom()'>Join Room</button><br>
+<input type="text" id="msgtosend"></input>
 <button onclick='sendMessage()'>Send a message</button>
+<ul id = "chatlog">
+</ul>
 {% endblock %}
