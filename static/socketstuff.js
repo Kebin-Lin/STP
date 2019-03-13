@@ -3,6 +3,7 @@ var submitNameBtn = document.getElementById('newNameBtn');
 var nameinput = document.getElementById('newName');
 var msgbox = document.getElementById('msgtosend');
 var roombox = document.getElementById('roomtojoin');
+var cellArray = [];
 
 socket.on('connect', function() { //Executed upon opening the site
   console.log('Successfully Connected');
@@ -26,6 +27,17 @@ socket.on('message', function(msg) { //Executed upon recieving a message event
   chatlog.appendChild(newMsg) //Append the new element to the chat list
 })
 
+socket.on('gameUpdate', function(board) {
+  updateBoard(board);
+})
+
+var updateBoard = function(board) {
+  board = board.toUpperCase();
+  for (var i = 0; i < 9; i++) {
+    cellArray[i].innerHTML = board[i];
+  }
+}
+
 var sendMessage = function() { //Sends a message event to the server
   console.log('Sending message');
   var newMsg = msgbox.value;
@@ -38,7 +50,7 @@ var joinRoom = function() { //Sends an event to the server to join a room
   console.log('Joining room');
   inputbox = document.getElementById('roomtojoin');
   var roomName = inputbox.value;
-  socket.emit('joinRoom',roomName);
+  socket.emit('joinRoom', roomName);
   inputbox = "";
 }
 
@@ -50,8 +62,13 @@ var submitName = function() {
   $('#nameModal').modal('hide')
 }
 
+var sendMove = function(pos) {
+  console.log('Sending move ' + pos);
+  socket.emit('makeMove', pos);
+}
+
 nameinput.addEventListener("keydown", function(event) {
-  if (event.keyCode == 13) {
+  if (event.keyCode == 13) { //Check for Enter key press
     event.preventDefault();
     submitNameBtn.click();
   }
@@ -69,4 +86,16 @@ roombox.addEventListener("keydown", function(event) {
     event.preventDefault();
     joinRoom();
   }
+})
+
+for (var i = 0; i < 9; i++) {
+  var currCellName = "cell" + i;
+  var currCell = document.getElementById(currCellName);
+  cellArray.push(currCell);
+}
+
+cellArray.forEach(function(elm) {
+  elm.addEventListener('click', function(event) {
+    sendMove(elm.id);
+  })
 })
