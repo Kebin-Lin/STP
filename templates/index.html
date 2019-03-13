@@ -1,9 +1,30 @@
 {% extends "base.html" %}
 {% block body %}
-<input type="text" id="roomtojoin"></input>
-<button onclick='joinRoom()'>Join Room</button><br>
-<input type="text" id="msgtosend"></input>
-<button onclick='sendMessage()'>Send a message</button>
-<ul id = "chatlog">
-</ul>
+<div class="modal fade" id="nameModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div style="text-align: center" class="modal-body">
+        <h5>Select a name</h5>
+        <input style="margin-bottom: 10px" class="form-control" type="text" placeholder="CoolBean" id="newName">
+        <button type="button" class="btn btn-primary" onclick='submitName()' id="newNameBtn">Submit</button>
+        <button style="display:none" type="button" class="close" data-dismiss="modal" aria-label="Close" id="closemodal"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="margin-top:50px">
+  <div class="row justify-content-center" style="margin-bottom:100px">
+    <div class="col-4">
+      <input class="form-control" type="text" value="General" placeholder="Room Name" id="roomtojoin"></input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+      <div class="col-sm-12 col-md-4" style="word-wrap: break-word;">
+        <h5>Chat</h5>
+        <ul style="list-style: none; padding-left: 0;" id="chatlog"></ul>
+        <input class="form-control" type="text" id="msgtosend"></input>
+      </div>
+  </div>
+</div>
 {% endblock %}
