@@ -38,6 +38,6 @@ def checkStatus(game): #Returns the winner, draw, or None if the game is ongoing
     for awin in WINS:
         if layout[awin[0]] != ' ' and layout[awin[0]] == layout[awin[1]] == layout[awin[2]]:
                 return 'x' if layout[awin[0]] == 'x' else 'o'
-        if layout.count(' ') == 0:
+        elif layout.count(' ') == 0:
             return 'Draw'
     return None
