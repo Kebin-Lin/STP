@@ -1,21 +1,83 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="container" style="margin-top:50px">
-  <div class="row">
-    <div class="col-4" style="text-align:center">
+  <div class='row'>
+    <div class='col'>
       <h1>
         WebSockets
       </h1>
-    </div>
-  </div>
-  <div class='row'>
-    <div class='col'>
+      <hr>
       <h3>
         Table of Contents
       </h3>
+      <ul style='list-style-type: none'>
+        <li>
+          <a href='#events'>Events</a>
+        </li>
+      </ul>
+      <hr>
+      <h4 id='events'>
+        Events
+      </h4>
+      <p>
+        Events are the backbone of how WebSockets are used. They facilitate data
+        transfer between the client and the server. They can be thought of as
+        similar to the events that you are used to in JavaScript. Here are some
+        types of events that can be used:
+      </p>
+      <ul>
+        <li>
+          onopen (connect) - when the connection is first created by the handshake
+          <ul>
+            <li>
+              Useful when a set of actions needs to be executed upon successfully
+              connecting to the server, such as setting up a user
+            </li>
+          </ul>
+        </li>
+        <li>
+          onmessage (message) - when the client/server sends data
+          <ul>
+            <li>
+              Used to send some kind of message between the client and server,
+              for example a message on the status of the user
+            </li>
+          </ul>
+        </li>
+        <li>
+          onclose (disconnect) - when the connection is closed
+          <ul>
+            <li>
+              Useful for cleaning up a user's data when they leave the site
+            </li>
+          </ul>
+        </li>
+        <li>
+          onerror - when an error occurs; followed by connection closing
+          <ul>
+            <li>
+              Can be used to notify the user of some problem
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        Although these events are included by default, WebSockets supports the
+        naming of custom events, which will help the organize and split up tasks
+        for the server/client to execute. An example would be using custom events
+        to separate moves made in a game of tic tac toe, and messages from a player
+        to another.
+      </p>
+      <p>
+        Events can also be used to ask the server to perform a task that is
+        hidden from the user. The user can send an event to initiate the task,
+        then the server can send an event back as a response. This may be useful
+        to avoid the user accessing confidential data, or to prevent the need for
+        the user to download and process a large dataset. Best of all, this
+        entire sequence of event processing can be done without the need for a
+        page refresh, giving the user a smoother experience.
+      </p>
     <div class='col'>
-  </div>
-  <div class='row'>
   </div>
 </div>
 {% endblock %}
