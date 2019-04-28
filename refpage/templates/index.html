@@ -6,17 +6,36 @@
       <h1>
         WebSockets
       </h1>
+      <p style='font-size:12px'>
+        with STP (1 &deg;C, 1 ATm)
+      </p>
       <hr>
       <h3>
         Table of Contents
       </h3>
       <ul style='list-style-type: none'>
         <li>
-        <a href="#duplexcommunication">Duplex Communication</a><br>
-        <a href="#websockets">WebSockets</a><br>
-        <a href="#handshake">Handshake</a><br>
-        <a href="#applications">Applications of WebSockets</a><br>
-          <a href='#events'>Events</a><br>
+          <a href="#duplexcommunication">Duplex Communication</a>
+          <ul style='list-style-type: none'>
+            <li>
+              <a href='#polling'>Polling</a>
+            </li>
+            <li>
+              <a href='#longpolling'>Long Polling</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#websockets">WebSockets</a>
+        </li>
+        <li>
+          <a href="#handshake">Handshake</a>
+        </li>
+        <li>
+          <a href="#applications">Applications of WebSockets</a>
+        </li>
+        <li>
+          <a href='#events'>Events</a>
         </li>
       </ul>
       <hr>
@@ -24,20 +43,23 @@
         Duplex Communication
       </h4>
       <p>
-        Duplex Communication is when both ends of the communcation can send and recieve 
-        signals to one another. In this case, the two ends for communication are the 
+        Duplex Communication is when both ends of the communcation can send and recieve
+        signals to one another. In this case, the two ends for communication are the
         server and the client.
       </p>
-      <p><b>Polling</b></p>
-      <p>HTTP requests are unidirectional communication and are stateless.
-        Polling is when these HTTP requests are done at a set time interval
+      <p id='polling'><b>Polling</b></p>
+      <p>
+        HTTP requests are unidirectional communication and are stateless.
+        Polling is when these HTTP requests are done at a set time interval to
+        check for new data.
       </p>
-      <p><b>HTTP Long Polling</b></p>
-      <p>The goal of long polling is to achieve realtime updates from server to client.
-        It is similar to polling, but the server delays the response of a HTTP request until after 
+      <p id='longpolling'><b>HTTP Long Polling</b></p>
+      <p>
+        The goal of long polling is to achieve realtime updates from server to client.
+        It is similar to polling, but the server delays the response of a HTTP request until after
         new data is available.
       </p>
-      <p> IMG HERE </p>
+      <img src='https://www.pubnub.com/wp-content/uploads/2014/11/HTTP-LONG-POLLING.png' width='100%'>
       <table>
       <tr>
       <td>Pros</td><td>Cons</td>
