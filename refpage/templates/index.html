@@ -12,9 +12,63 @@
       </h3>
       <ul style='list-style-type: none'>
         <li>
-          <a href='#events'>Events</a>
+        <a href="#duplexcommunication">Duplex Communication</a><br>
+        <a href="#websockets">WebSockets</a><br>
+        <a href="#handshake">Handshake</a><br>
+        <a href="#applications">Applications of WebSockets</a><br>
+          <a href='#events'>Events</a><br>
         </li>
       </ul>
+      <hr>
+      <h4 id="duplexcommunication">
+        Duplex Communication
+      </h4>
+      <p>
+        Duplex Communication is when both ends of the communcation can send and recieve 
+        signals to one another. In this case, the two ends for communication are the 
+        server and the client.
+      </p>
+      <p><b>Polling</b></p>
+      <p>HTTP requests are unidirectional communication and are stateless.
+        Polling is when these HTTP requests are done at a set time interval
+      </p>
+      <p><b>HTTP Long Polling</b></p>
+      <p>The goal of long polling is to achieve realtime updates from server to client.
+        It is similar to polling, but the server delays the response of a HTTP request until after 
+        new data is available.
+      </p>
+      <p> IMG HERE </p>
+      <table>
+      <tr>
+      <td>Pros</td><td>Cons</td>
+      </tr>
+      <tr>
+      <td>Ability to get realtime updates</td>
+      <td>May cause high latency</td>
+      </tr>
+      <tr>
+      <td>Easy to implement</td>
+      <td>Uses a lot of bandwidth and server resources</td>
+      </tr>
+      <tr>
+      <td>Unnecessarily opening/closing many connections</td>
+      </tr>
+      </table>
+      <hr>
+        <h4 id="applications">Applications of WebSockets</h4>
+        <p>The intended use of WebSockets is for realtime applications.</p>
+        <p>Here is a list of common uses</p>
+        <ul>
+        <li>
+          Chat Rooms
+        </li>
+        <li>
+          Online Games
+        </li>
+        <li>
+          Dynamic Search Bars
+        </li>
+        </ul>
       <hr>
       <h4 id='events'>
         Events
