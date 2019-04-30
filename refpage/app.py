@@ -1,6 +1,5 @@
 from flask_socketio import SocketIO, join_room, leave_room, emit, send
 from flask import Flask, render_template, request
-from util import Game
 import os
 
 app = Flask(__name__)
