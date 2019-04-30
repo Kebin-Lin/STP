@@ -167,7 +167,59 @@
         unique ID. This is used to send events to individual users. Rooms, like
         events, can be given custom names.
       </p>
-    <div class='col'>
+      <p>
+        After joining a room, try opening this page on another device or tab,
+        then try sending a message.
+      </p>
+      <p>
+        Please Note:
+      </p>
+      <ul>
+        <li>
+          Upon joining a room, only you will see the join message
+          <ul>
+            <li>
+              This is done by sending a message to the room named by the user's ID
+            </li>
+          </ul>
+        </li>
+        <li>
+          Only users who are currently in a room will see the messages sent in that room
+          <ul>
+            <li>
+              Users are not limited to a single room, but that feature is not
+              demonstrated here
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class='row justify-content-center'>
+        <div class='col-4'>
+          <input class="form-control" type="text" value="General" placeholder="Room Name" id="roomtojoin"></input>
+        </div>
+      </div>
+      <br>
+      <div class='row justify-content-center'>
+        <div class="col-sm-12 col-md-4" style="word-wrap: break-word;">
+          <h5 style="text-align:center">Chat</h5>
+          <ul style="list-style: none; padding-left: 0;" id="chatlog">
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+          </ul>
+          <input class="form-control" type="text" id="msgtosend"></input>
+          <br>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
