@@ -1,5 +1,10 @@
-{% extends "base.html" %}
-{% block body %}
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>{% block title %}STP{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
 <div class="container" style="margin-top:50px">
   <div class='row'>
     <div class='col'>
@@ -26,11 +31,16 @@
           </ul>
         </li>
         <li>
-          <a href="#websockets">WebSockets</a>
+          <a href="#websockets">What are WebSockets?</a>
         </li>
+        <ul style="list-style-type: none">
         <li>
           <a href="#handshake">Handshake</a>
+          </li>
+          <li>
+           <a href="#actions">Actions</a>
         </li>
+        </ul>
         <li>
           <a href="#applications">Applications of WebSockets</a>
         </li>
@@ -39,6 +49,12 @@
         </li>
         <li>
           <a href='#rooms'>Rooms</a>
+        </li>
+        <li>
+          <a href="#proscons">Advantages and Disadvantages</a>
+        </li>
+        <li>
+          <a href="libraries">Libraries</a>
         </li>
       </ul>
       <hr>
@@ -76,9 +92,31 @@
       <td>Uses a lot of bandwidth and server resources</td>
       </tr>
       <tr>
+      <td></td>
       <td>Unnecessarily opening/closing many connections</td>
       </tr>
       </table>
+      <hr>
+      <h4 id="websockets">What are WebSockets?</h4>
+      <p> WebSockets allow for bidirectional communication between client browser and server.
+      This will allow for realtime data flow. Basically, when one client does an action and sends a request,
+      the server will be able to update all the other clients at the same time since each websocket connection 
+      between the client and server is unique. </p>
+      <p id='handshake'><b>Handshake</b></p>
+      <p>This is the first step to create a websocket. The client and server
+      will agree to use the WebSocket Protocol. This protocol is initiated by upgrading from the HTTP protocal
+      to the WebSocket protocol as seen below.</p>
+      <img src="http://www.raspberry-pi-geek.com/var/rpi/storage/images/archive/2015/12/controlling-the-raspberry-pi-with-android-via-the-websocket-protocol/figure-1/18965-1-eng-US/Figure-1_lightbox.png" width="100%" height="500px">
+      <p>Now that the websocket connection is established, the client and server can continue to 
+      commnicate until that connection is broken by either sides (client or server).</p>
+      <img src="https://www.pubnub.com/wp-content/uploads/2014/09/WebSockets-Diagram.png" width = "100%" height="500px">
+      <p id='actions'><b>Actions</b></p>
+      <p>There are two main actions in which users can utlize:</p>
+      <ul>
+      <li>Send - used to communicate with the server (sending data)</li>
+      <li>Close - used to terminate the connection</li>
+      </ul>
+      
       <hr>
         <h4 id="applications">Applications of WebSockets</h4>
         <p>The intended use of WebSockets is for realtime applications.</p>
@@ -167,59 +205,44 @@
         unique ID. This is used to send events to individual users. Rooms, like
         events, can be given custom names.
       </p>
-      <p>
-        After joining a room, try opening this page on another device or tab,
-        then try sending a message.
-      </p>
-      <p>
-        Please Note:
-      </p>
+      
+    
+      <hr>
+      <h4 id="proscons">Advantages and Disadvantages</h4>
+        <table>
+        <tr>
+          <td>Continuous connection between client and server</td>
+          <td>The TCP connection is always open until you disconnect, which can be costly.</td>
+        </tr>
+        <tr>
+          <td>Bidirectional Communication</td>
+          <td>If you only need one response, then websockets are more costly than HTTP requests. For example, if you are using REST APIs, it would be more practical to use HTTP requests.</td>
+          </tr>
+          <tr>
+          <td>Low latency</td>
+          <td>HTTP is more universally supported; WebSockets do not work with older browsers. </td>
+        </tr>
+        </table>
+      <hr>
+      <h4 id="libraries">Some WebSockets Libraries</h4>
       <ul>
-        <li>
-          Upon joining a room, only you will see the join message
-          <ul>
-            <li>
-              This is done by sending a message to the room named by the user's ID
-            </li>
-          </ul>
-        </li>
-        <li>
-          Only users who are currently in a room will see the messages sent in that room
-          <ul>
-            <li>
-              Users are not limited to a single room, but that feature is not
-              demonstrated here
-            </li>
-          </ul>
-        </li>
+        <li>C++  <a href="http://git.warmcat.com/cgi-bin/cgit/libwebsockets/"> libwebsockets</a></li>
+        <li>Node.JS  <a href="https://github.com/einaros/ws"> socket.io</a></li>
+        <li>Python  <a href="https://flask-socketio.readthedocs.io/en/latest/"> Flask-socketio</a>  </li>
       </ul>
-      <div class='row justify-content-center'>
-        <div class='col-4'>
-          <input class="form-control" type="text" value="General" placeholder="Room Name" id="roomtojoin"></input>
-        </div>
-      </div>
-      <br>
-      <div class='row justify-content-center'>
-        <div class="col-sm-12 col-md-4" style="word-wrap: break-word;">
-          <h5 style="text-align:center">Chat</h5>
-          <ul style="list-style: none; padding-left: 0;" id="chatlog">
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-          </ul>
-          <input class="form-control" type="text" id="msgtosend"></input>
-          <br>
-        </div>
-      </div>
+      <p>Our demo code (with tic-tac-toe and chat rooms) can be found <a href="https://github.com/Stuy-Kevin-Lin/STP">here</a></p>
+      <hr>
     </div>
   </div>
 </div>
-{% endblock %}
+</body>
+<footer>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</footer>
+</html>
+
+
